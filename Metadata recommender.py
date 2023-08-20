@@ -12,13 +12,13 @@ gmd = pd.read_json('games_metadata.json', lines=True)  # Games description and t
 
 
 
-### -- Sample has 2500 games with > 2000 reviews -- ##
+### -- Sample has 2500 games with > 2000 reviews -- ###
 merged = pd.merge(games, gmd, how='inner', on='app_id')
 merged.title = merged.title.apply(lambda x: x.replace('®','').replace('™','').lower())  # Clean titles for easier use
 df = merged[merged.user_reviews > 2000].sample(n=2500, replace=False) 
 df.shape # (2500,15)
 
-### -- Initial sample cleaning -- ##
+### -- Initial sample cleaning -- ###
 df['year'] = pd.to_datetime(df['date_release']).apply(lambda x: str(x).split('-')[0])
 df['free'] = df['price_final'].apply(lambda x: 'free' if x==0 else 'paid')
 df = df.drop(['date_release', 'win', 'mac', 'linux', 'price_final', 'price_original', 'discount', 'steam_deck'], axis=1)
@@ -32,7 +32,7 @@ clean_df.shape #(2433, 11)
 
 
 
-### -- Calculate weighted rating using IMDB formula -- ##
+### -- Calculate weighted rating using IMDB formula -- ###
 def weighted_rating(x):
     v = x['user_reviews'] # vote number for specific game
     R = x['positive_ratio'] # average rating for specific game
@@ -48,7 +48,7 @@ clean_df.sort_values('wr', ascending=False).head(5)[['title','positive_ratio','w
 
 
 
-### -- Description Only based recommender -- ## 
+### -- Description Only based recommender -- ### 
 def get_recommendations(title):
     idx = indices[title.lower()]  # Find location of game in dataframe
     sim_scores = list(enumerate(cosine_sim[idx]))  # Find similarity with other games
@@ -69,7 +69,7 @@ get_recommendations('call of duty').head(10)
 
 
 
-### -- Metadata based recommender -- ## 
+### -- Metadata based recommender -- ### 
 clean_df['equal'] = clean_df.apply(lambda x: 'yes' if x['Developer'] == x['Publisher'] else 'no', axis=1)  # If Developer/Publisher are the same we don't include twice
 clean_df['Developer'] = clean_df['Developer'].apply(lambda x: str.lower(x.replace(" ", "")))
 clean_df['Developer'] = clean_df['Developer'].apply(lambda x: f'{x} {x} {x} {x} {x} {x} {x} {x}') # Increase Weight                                                   
@@ -95,18 +95,19 @@ clean_df['tags'] = clean_df['tags'].apply(lambda x: ' '.join(x))  # Joins tags i
 clean_df['tags'] = clean_df['tags'].apply(lambda x: f'{x} {x} {x}')
 
 clean_df['soup'] = clean_df.apply(lambda x: x['description'] + x['tags'] + x['Developer'] + x['Publisher'] + x['free'] if x['equal'] == 'no' else x['description'] + x['tags'] + x['Developer'] + x['free'], axis=1)
+# ^ If Developer = Publisher to stop overweighing we only put Developer in this case
 
-count = CountVectorizer(stop_words='english')
-count_matrix = count.fit_transform(clean_df.tags)  # Get
-cosine_sim = cosine_similarity(count_matrix, count_matrix)
+count = CountVectorizer(stop_words='english')  # 
+count_matrix = count.fit_transform(clean_df.tags)
+cosine_sim = cosine_similarity(count_matrix, count_matrix)  # Work out Cosine Similarity
 
-# Takes the titles
 indices = pd.Series(clean_df.index, index=clean_df.title)  
-
-get_recommendations('call of duty').head(10)
-
+get_recommendations('call of duty').head(10)  # Get different results using same function
 
 
+
+
+### -- Sort by weighted rating  -- ### 
 
 def improved_recomendations(title):
     idx = indices[title.lower()]  # Section same as get_recommendations
@@ -116,7 +117,7 @@ def improved_recomendations(title):
     game_indices = [i[0] for i in sim_scores]
     
     games_ = clean_df.iloc[game_indices][['title','year','positive_ratio','user_reviews', 'Developer', 'Publisher','wr']].sort_values('wr', ascending=False)
-        
+    # ^ Sort the 20 most similar by the weighted rating to provide high quality suggestions
     return games_
 
 
