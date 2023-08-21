@@ -107,7 +107,7 @@ get_recommendations('call of duty').head(10)  # Get different results using same
 
 
 
-### -- Sort by weighted rating  -- ### 
+### -- Sort most similar by weighted rating  -- ### 
 
 def improved_recomendations(title):
     idx = indices[title.lower()]  # Section same as get_recommendations
