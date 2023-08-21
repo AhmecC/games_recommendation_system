@@ -3,7 +3,6 @@ API_KEY = ''
 BASE_URL = 'https://store.steampowered.com'
 
 
-
 ### -- Use sampled app_id's to obtain developer/publisher information -- ###
 def get_requests(app_id):
     app_id = str(app_id)
@@ -19,7 +18,6 @@ def get_requests(app_id):
         return [app_id, None]  
 
 
-
 ### -- Due to steamAPI limits can only do around 200 requests every 5 minutes, this ensures i can obtain as much information as possible efficiently -- ###
 chunk_size = 190
 divided_lists = [df['app_id'][i:i+chunk_size].to_list() for i in range(0, len(df), chunk_size)]
@@ -30,6 +28,11 @@ for item in divided_lists:
         print('\n\n\n List Completed\n\n\n')
         time.sleep(240)
 files_df = pd.DataFrame(files, columns=['app_id', 'Developer', 'Publisher']).set_index('app_id') # Merge with original df
+
+
+
+
+
 
 
 
