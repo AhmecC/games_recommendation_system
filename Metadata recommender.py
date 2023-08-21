@@ -98,7 +98,7 @@ clean_df['soup'] = clean_df.apply(lambda x: x['description'] + x['tags'] + x['De
 # ^ If Developer = Publisher to stop overweighing we only put Developer in this case
 
 count = CountVectorizer(stop_words='english')  # 
-count_matrix = count.fit_transform(clean_df.tags)
+count_matrix = count.fit_transform(clean_df.soup)
 cosine_sim = cosine_similarity(count_matrix, count_matrix)  # Work out Cosine Similarity
 
 indices = pd.Series(clean_df.index, index=clean_df.title)  
