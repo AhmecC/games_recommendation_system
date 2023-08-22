@@ -5,12 +5,12 @@ In this project I aimed to create a gaming recomendation system using an appropr
 
 
 
-## 'Scraper.py'
+## Scraper.py
 Sampled top 2500 games from Kaggle dataset:
 > - Used steamAPI to attain Developer & Publisher information
 > - Ran again to obtain as much missing possible as possible (left with 2433 games) 
 
-## 'Metadata Recommender.py'
+## [Metadata Recommender.py](https://github.com/AhmecC/games_recommendation_system/blob/main/Metadata%20Recommender.py)
 
 Created sample of top 2500 games by number of recommendations:
 > - Cleaned data by removing irrelevant columns and creating new worthwhile ones
