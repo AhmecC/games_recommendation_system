@@ -22,17 +22,18 @@ Used IMDB weighted rating formula:
 
 Created Similarity Metric:
 > - Initially tested using just description test as metadata
->   -   adasdasd
+>   - *Dataset contained short description, but i believe that the long description would've aided much greater*
+> - Extended to also include tags, developer, publisher and if the game was free
+>   - Increased weights for tags, developer & publisher
+> - Most similar games were ordered by weighted rating to ensure high quality games were recommended     
 
-I then first tested creating the similarity metric using only the description text as metadata. This achieved promising results but could be further improved. Thus i extended the model to include also the tags, developer, publisher and if the game was free or not. I increased the weights for tags, developer and publisher to make sure they had a strong effect on determing if games were similar. Once the most similar games were returned i ordered them by the weigted rating to ensure high quality games are recommended despite them being potentially less relevant tha others.
-
-## 'Collaborative Filtering.py'
+## [Collaborative Filtering.py'](https://github.com/AhmecC/games_recommendation_system/blob/main/Collaborative%20Filtering.py)
 
 I first attained a dataframe of users with their recommendations (a binary value of True or False), and kept only reviews that were part of the sampled games. As my sample kept the top 2500 most reviewed games, i was left with just under 26 million reviews. I then shorted this down to 400,000 by taking the top 5000 users with most reviews.  I made an assumption that if games were not played they were not recommended and thus set to 0.
 
 ... to be continued
 
-## 'Hybrid Recommender.py'
+## [Hybrid Recommender.py](https://github.com/AhmecC/games_recommendation_system/blob/main/Hybrid%20Recommender.py)
 
 This combined the final models from the previous section into one efficient system. I used the metadata to calculate the similarity between games. I then used collaborative filtering to find games similar to what they've recommended. This returned the most similar games given what they've played, thus personalising their recommendations.
 
