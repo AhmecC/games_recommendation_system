@@ -7,10 +7,10 @@ recommened = recommended.drop([2109460, 13560, 327890, 942970, 1517960], axis=0)
 recommended.shape  # (25891173, 8)
 
 
-### --- Get users with lots of reviews --- ###
-top_users = users.sort_values('reviews', ascending=False).head(3000).user_id  # 142 is lowest
+### --- Only take users with lots of reviews --- ###
+top_users = users.sort_values('reviews', ascending=False).head(5000).user_id  # 113 is lowest
 reviews = pd.merge(recommended, top_users, how='inner', on='user_id')  # Only reviews for sampled games
-how_much.shape  # 54,489 False and 243,792 True
+how_much.shape  # 76,740 False and 349,855 True
 
 
 ### --- Get User-Game matrix --- ###
