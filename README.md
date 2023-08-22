@@ -1,11 +1,15 @@
 # Steam Games Recommendation System
 Original Dataset : https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam 
 
-This project aimed to create a recommendation system using similarity between games given metadata (description, tags, developer, publisher, free?) and user-user collaborative filtering to help personalise recommendations given games they've recommended. Each file represents a different stage in the project, ending with an efficient Hybrid recommender.
+> In this project I aimed to create a gaming recomendation system using an appropriate similarity metric and collaborative filtering to provide personal recommendations. Each file represents a different stage in the project, ending with an efficient Hybrid Recommender.
+
+
 
 ## Scraper.py
 
-After sampling the large dataset attained from kaggle, i used the steamAPI to get the Developer and Publisher information for the 2500 sampled games. I then obtained some final missing information for games (description, tags). After removing missing data i was left with 2433 games.
+> Sampled top 2500 games from Kaggle dataset:
+> - Used steamAPI to attain Developer & Publisher information
+> - Ran again to obtain as much missing possible as possible (left with 2433 games) 
 
 ## Metadata Recommender.py
 
