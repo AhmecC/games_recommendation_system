@@ -5,7 +5,7 @@ In this project I aimed to create a gaming recomendation system using an appropr
 
 
 
-## Scraper.py
+## [Scraper.py](https://github.com/AhmecC/games_recommendation_system/blob/main/scraper.py)
 Sampled top 2500 games from Kaggle dataset:
 > - Used steamAPI to attain Developer & Publisher information
 > - Ran again to obtain as much missing possible as possible (left with 2433 games) 
@@ -22,7 +22,7 @@ Used IMDB weighted rating formula:
 
 Created Similarity Metric:
 > - Initially tested using just description test as metadata
-> -  
+>   -   adasdasd
 
 I then first tested creating the similarity metric using only the description text as metadata. This achieved promising results but could be further improved. Thus i extended the model to include also the tags, developer, publisher and if the game was free or not. I increased the weights for tags, developer and publisher to make sure they had a strong effect on determing if games were similar. Once the most similar games were returned i ordered them by the weigted rating to ensure high quality games are recommended despite them being potentially less relevant tha others.
 
