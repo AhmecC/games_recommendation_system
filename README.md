@@ -10,3 +10,4 @@ I adeptly used the **steamAPI** to further enrich the dataset, creating an essen
 - Dataset is from [Kaggle](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam) but used SteamAPI to get additional information
 - Only top 2500 games and top 5000 reviewers (400,000 total reviews) looked at to mantain performance
 - Similarity metric uses description, tags, developer, publisher and if free.
+- Files go from Scraper >> Metadata Recommender >> Collaborative Filtering >> Hybrid Recommender >> SQL Hybrid Recommender
