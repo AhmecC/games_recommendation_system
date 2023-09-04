@@ -2,7 +2,7 @@
 This Game recommender creates personalised recommendations based on the games that a user has played. It uses the similarity between games, user-based collaborative filtering and the weighted rating to deliver the best recommendations possible. ```SQL Hybrid Recommender.py``` is the final product :)
 
 
-# Skills Used
+## Skills Used
 I adeptly used the **steamAPI** to further enrich the dataset, creating an essential algorithm to obtain more meaningful data. I identified the significant potential of **TF-IDF** to acquire insights from a wealth of text, which helped create a sophisticated similarity metric. I demonstrated proficiency in **pandas** and **SQL**, by creating a clean structured and organised database, which boosted the efficiency of the Recommender. My **Mathematical** knowledge was tested in this project, especially in the field of matrices and vectors. I used this knowledge to fuse the weightings from collaborative filtering and the similarity metrics, allowing for a meticulously curated list for recommendation.
 
 
